@@ -2,9 +2,13 @@ package com.codexsystem.api.model;
 
 import com.codexsystem.api.enums.Especialidade;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "medicos")
+@Getter
+@Setter
 public class Medico {
 
     @Id
@@ -22,5 +26,19 @@ public class Medico {
     private Especialidade especialidade;
     @Embedded
     private Endereco endereco;
+
+    public Medico() {
+
+    }
+
+    public Medico(String nome, String email, String telefone, Especialidade especialidade, String crm, Endereco endereco) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.especialidade = especialidade;
+        this.crm = crm;
+        this.endereco = endereco;
+    }
+
 
 }
