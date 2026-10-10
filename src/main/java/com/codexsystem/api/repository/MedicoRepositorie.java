@@ -1,4 +1,10 @@
 package com.codexsystem.api.repository;
 
-public interface MedicoRepositorie {
+import com.codexsystem.api.model.Medico;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MedicoRepositorie extends JpaRepository<Medico, Long> {
+
 }
