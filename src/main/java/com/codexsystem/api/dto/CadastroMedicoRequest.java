@@ -9,6 +9,6 @@ public record CadastroMedicoRequest(
     Especialidade especialidade,
     String crm,
 
-    Endereco endereco
+    EnderecoDto endereco
 ) {
 }

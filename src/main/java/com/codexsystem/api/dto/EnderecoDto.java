@@ -1,6 +1,6 @@
 package com.codexsystem.api.dto;
 
-public record Endereco(
+public record EnderecoDto(
         String logradouro,
         String numero,
         String complemento,
