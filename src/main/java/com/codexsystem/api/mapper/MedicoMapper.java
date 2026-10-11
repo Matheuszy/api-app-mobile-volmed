@@ -1,7 +1,8 @@
 package com.codexsystem.api.mapper;
 
-import com.codexsystem.api.dto.CadastroMedicoRequest;
-import com.codexsystem.api.dto.EnderecoDto;
+import com.codexsystem.api.dto.request.CadastroMedicoRequest;
+import com.codexsystem.api.dto.request.EnderecoDto;
+import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
 import com.codexsystem.api.model.Endereco;
 import com.codexsystem.api.model.Medico;
 import org.springframework.stereotype.Component;
@@ -35,28 +36,11 @@ public class MedicoMapper {
         return endereco;
     }
 
-    public CadastroMedicoRequest toDtoMedico(Medico medico) {
-        EnderecoDto enderecoDto = toDtoEndereco(medico.getEndereco());
-        CadastroMedicoRequest dto = new CadastroMedicoRequest(
+    public CadastroMedicoResponseDto toDtoMedico(Medico medico) {
+        CadastroMedicoResponseDto dto = new CadastroMedicoResponseDto(
                 medico.getNome(),
                 medico.getEmail(),
-                medico.getTelefone(),
-                medico.getEspecialidade(),
-                medico.getCrm(),
-                enderecoDto
-        );
-        return dto;
-    }
-
-    private EnderecoDto toDtoEndereco(Endereco endereco) {
-        EnderecoDto dto = new EnderecoDto(
-                endereco.getLogradouro(),
-                endereco.getNumero(),
-                endereco.getComplemento(),
-                endereco.getBairro(),
-                endereco.getCidade(),
-                endereco.getEstado(),
-                endereco.getCep()
+                medico.getEspecialidade()
         );
         return dto;
     }
