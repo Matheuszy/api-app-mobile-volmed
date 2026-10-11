@@ -3,6 +3,7 @@ package com.codexsystem.api.service;
 import com.codexsystem.api.dto.request.AtualizaMedicoDto;
 import com.codexsystem.api.dto.request.CadastroMedicoRequest;
 import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
+import com.codexsystem.api.enums.StatusMedico;
 import com.codexsystem.api.mapper.MedicoMapper;
 import com.codexsystem.api.model.Medico;
 import com.codexsystem.api.repository.MedicoRepositorie;
@@ -43,8 +44,11 @@ public class MedicoService {
                 .map(mapper::toDtoMedico);
     }
 
-    public void excluirMedico(Long id) {
-        medicoRepository.deleteById(id);
+    public void desativarMedico(Long id) {
+        Medico medico = medicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+        medico.setStatus(StatusMedico.INATIVO);
+        medicoRepository.save(medico);
     }
 
     @Transactional
