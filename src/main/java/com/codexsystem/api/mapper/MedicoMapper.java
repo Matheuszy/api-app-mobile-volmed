@@ -1,5 +1,6 @@
 package com.codexsystem.api.mapper;
 
+import com.codexsystem.api.dto.request.AtualizaMedicoDto;
 import com.codexsystem.api.dto.request.CadastroMedicoRequest;
 import com.codexsystem.api.dto.request.EnderecoDto;
 import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
@@ -23,6 +24,28 @@ public class MedicoMapper {
         return medico;
     }
 
+
+
+    public CadastroMedicoResponseDto toDtoMedico(Medico medico) {
+        CadastroMedicoResponseDto dto = new CadastroMedicoResponseDto(
+                medico.getId(),
+                medico.getNome(),
+                medico.getEmail(),
+                medico.getEspecialidade()
+        );
+        return dto;
+    }
+
+    public AtualizaMedicoDto toDtoAtualizaMedico(Medico medico) {
+        AtualizaMedicoDto dto = new AtualizaMedicoDto(
+                medico.getId(),
+                medico.getNome(),
+                medico.getTelefone(),
+                medico.getEndereco()
+        );
+        return dto;
+    }
+
     private Endereco toEntityEndereco(EnderecoDto dto) {
         Endereco endereco = new Endereco(
                 dto.logradouro(),
@@ -36,12 +59,5 @@ public class MedicoMapper {
         return endereco;
     }
 
-    public CadastroMedicoResponseDto toDtoMedico(Medico medico) {
-        CadastroMedicoResponseDto dto = new CadastroMedicoResponseDto(
-                medico.getNome(),
-                medico.getEmail(),
-                medico.getEspecialidade()
-        );
-        return dto;
-    }
+
 }

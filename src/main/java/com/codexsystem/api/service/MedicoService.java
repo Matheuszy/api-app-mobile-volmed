@@ -1,5 +1,6 @@
 package com.codexsystem.api.service;
 
+import com.codexsystem.api.dto.request.AtualizaMedicoDto;
 import com.codexsystem.api.dto.request.CadastroMedicoRequest;
 import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
 import com.codexsystem.api.mapper.MedicoMapper;
@@ -47,11 +48,20 @@ public class MedicoService {
     }
 
     @Transactional
-    public CadastroMedicoResponseDto atualizarMedico(Long id, String nome) {
-        Medico medico = medicoRepository.findById(id)
+    public CadastroMedicoResponseDto atualizarMedico(AtualizaMedicoDto atualizaMedicoDto) {
+        Medico medico = medicoRepository.findById(atualizaMedicoDto.idMedico())
                 .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
-        medico.setNome(nome);
+        if (atualizaMedicoDto.nome() != null) {
+            medico.setNome(atualizaMedicoDto.nome());
+        }
+        if (atualizaMedicoDto.telefone() != null) {
+            medico.setTelefone(atualizaMedicoDto.telefone());
+        }
+        if (atualizaMedicoDto.endereco() != null) {
+            medico.setEndereco(atualizaMedicoDto.endereco());
+        }
         medicoRepository.save(medico);
         return mapper.toDtoMedico(medico);
     }
+
 }
