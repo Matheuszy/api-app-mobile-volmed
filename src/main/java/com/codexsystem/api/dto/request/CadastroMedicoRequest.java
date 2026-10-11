@@ -1,4 +1,4 @@
-package com.codexsystem.api.dto;
+package com.codexsystem.api.dto.request;
 
 import com.codexsystem.api.enums.Especialidade;
 import jakarta.validation.Valid;

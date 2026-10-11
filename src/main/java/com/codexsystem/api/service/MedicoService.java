@@ -1,4 +1,50 @@
 package com.codexsystem.api.service;
 
+import com.codexsystem.api.dto.request.CadastroMedicoRequest;
+import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
+import com.codexsystem.api.mapper.MedicoMapper;
+import com.codexsystem.api.model.Medico;
+import com.codexsystem.api.repository.MedicoRepositorie;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
+
+@Service
 public class MedicoService {
+
+    private final MedicoRepositorie medicoRepository;
+
+    private final MedicoMapper mapper;
+
+    public MedicoService(MedicoRepositorie medicoRepository,
+                         MedicoMapper mapper) {
+        this.medicoRepository = medicoRepository;
+        this.mapper = mapper;
+    }
+
+    @Transactional
+    public CadastroMedicoResponseDto cadastrarMedico(CadastroMedicoRequest medico) {
+        Medico newMedico = mapper.toEntityMedico(medico);
+        medicoRepository.save(newMedico);
+        return mapper.toDtoMedico(newMedico);
+
+    }
+
+    public CadastroMedicoResponseDto obterMedicoPorId(Long id) {
+        Medico medico = medicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+        return mapper.toDtoMedico(medico);
+    }
+
+    public void excluirMedico(Long id) {
+        medicoRepository.deleteById(id);
+    }
+
+    @Transactional
+    public CadastroMedicoResponseDto atualizarMedico(Long id, String nome) {
+        Medico medico = medicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
+        medico.setNome(nome);
+        medicoRepository.save(medico);
+        return mapper.toDtoMedico(medico);
+    }
 }

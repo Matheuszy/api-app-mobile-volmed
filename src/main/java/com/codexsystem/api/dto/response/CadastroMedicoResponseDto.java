@@ -1,4 +1,11 @@
 package com.codexsystem.api.dto.response;
 
-public class CadastroMedicoResponseDto {
+import com.codexsystem.api.enums.Especialidade;
+
+public record CadastroMedicoResponseDto(
+    String nome,
+    String email,
+    Especialidade especialidade
+) {
 }
+
