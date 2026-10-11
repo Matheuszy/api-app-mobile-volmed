@@ -1,6 +1,7 @@
 package com.codexsystem.api.model;
 
 import com.codexsystem.api.enums.Especialidade;
+import com.codexsystem.api.enums.StatusMedico;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,8 @@ public class Medico {
 
     private String crm;
 
+    private StatusMedico status;
+
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
     @Embedded
@@ -35,6 +38,7 @@ public class Medico {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+        this.status = StatusMedico.ATIVO;
         this.especialidade = especialidade;
         this.crm = crm;
         this.endereco = endereco;
