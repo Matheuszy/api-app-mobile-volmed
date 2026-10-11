@@ -6,6 +6,8 @@ import com.codexsystem.api.mapper.MedicoMapper;
 import com.codexsystem.api.model.Medico;
 import com.codexsystem.api.repository.MedicoRepositorie;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,6 +35,11 @@ public class MedicoService {
         Medico medico = medicoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
         return mapper.toDtoMedico(medico);
+    }
+
+    public Page<CadastroMedicoResponseDto> obterMedicos(Pageable pageable) {
+        return medicoRepository.findAll(pageable)
+                .map(mapper::toDtoMedico);
     }
 
     public void excluirMedico(Long id) {
