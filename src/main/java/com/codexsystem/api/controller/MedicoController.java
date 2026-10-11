@@ -1,5 +1,6 @@
 package com.codexsystem.api.controller;
 
+import com.codexsystem.api.dto.request.AtualizaMedicoDto;
 import com.codexsystem.api.dto.request.CadastroMedicoRequest;
 import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
 import com.codexsystem.api.service.MedicoService;
@@ -48,9 +49,9 @@ public class MedicoController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/update/doctor/{id}")
-    public ResponseEntity<CadastroMedicoResponseDto> updateDoctor(@PathVariable Long id, @RequestBody String nome) {
-        CadastroMedicoResponseDto medico = medicoService.atualizarMedico(id, nome);
+    @PutMapping("/update/doctor")
+    public ResponseEntity<CadastroMedicoResponseDto> updateDoctor(@RequestBody AtualizaMedicoDto atualizaMedicoDto) {
+        CadastroMedicoResponseDto medico = medicoService.atualizarMedico(atualizaMedicoDto);
         return ResponseEntity.ok(medico);
     }
 }
