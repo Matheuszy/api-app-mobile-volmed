@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -24,15 +25,18 @@ public class MedicoController {
     }
 
     @PostMapping("/register/doctor")
-    public ResponseEntity<CadastroMedicoResponseDto> registerDoctor(@RequestBody @Valid CadastroMedicoRequest request) {
+    public ResponseEntity<CadastroMedicoResponseDto> registerDoctor(@RequestBody @Valid CadastroMedicoRequest request, UriComponentsBuilder uriBuilder) {
+
         CadastroMedicoResponseDto medico = medicoService.cadastrarMedico(request);
-        return ResponseEntity.status(201).body(medico);
+        var uri = uriBuilder.path("/doctor/register/doctor/{id}").buildAndExpand(medico.idMedico()).toUri();
+
+        return ResponseEntity.created(uri).body(medico);
     }
 
     @GetMapping("/get/doctor/{id}")
     public ResponseEntity<CadastroMedicoResponseDto> getDoctorById(@PathVariable Long id) {
         CadastroMedicoResponseDto medico = medicoService.obterMedicoPorId(id);
-        return ResponseEntity.ok(medico);
+        return ResponseEntity.status(200).body(medico);
     }
 
     @GetMapping("/get/all/doctors")
@@ -52,6 +56,6 @@ public class MedicoController {
     @PutMapping("/update/doctor")
     public ResponseEntity<CadastroMedicoResponseDto> updateDoctor(@RequestBody AtualizaMedicoDto atualizaMedicoDto) {
         CadastroMedicoResponseDto medico = medicoService.atualizarMedico(atualizaMedicoDto);
-        return ResponseEntity.ok(medico);
+        return ResponseEntity.status(200).body(medico);
     }
 }
