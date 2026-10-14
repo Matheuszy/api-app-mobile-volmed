@@ -1,7 +1,7 @@
-package com.codexsystem.api.model;
+package com.codexsystem.api.domain.model;
 
-import com.codexsystem.api.enums.Especialidade;
-import com.codexsystem.api.enums.StatusMedico;
+import com.codexsystem.api.domain.enums.Especialidade;
+import com.codexsystem.api.domain.enums.StatusMedico;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,11 +1,11 @@
-package com.codexsystem.api.mapper;
+package com.codexsystem.api.domain.mapper;
 
-import com.codexsystem.api.dto.request.AtualizaMedicoDto;
-import com.codexsystem.api.dto.request.CadastroMedicoRequest;
-import com.codexsystem.api.dto.request.EnderecoDto;
-import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
-import com.codexsystem.api.model.Endereco;
-import com.codexsystem.api.model.Medico;
+import com.codexsystem.api.domain.dto.request.AtualizaMedicoDto;
+import com.codexsystem.api.domain.dto.request.CadastroMedicoRequest;
+import com.codexsystem.api.domain.dto.request.EnderecoDto;
+import com.codexsystem.api.domain.dto.response.CadastroMedicoResponseDto;
+import com.codexsystem.api.domain.model.Endereco;
+import com.codexsystem.api.domain.model.Medico;
 import org.springframework.stereotype.Component;
 
 @Component
