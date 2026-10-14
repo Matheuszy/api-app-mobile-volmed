@@ -1,6 +1,6 @@
-package com.codexsystem.api.dto.response;
+package com.codexsystem.api.domain.dto.response;
 
-import com.codexsystem.api.enums.Especialidade;
+import com.codexsystem.api.domain.enums.Especialidade;
 
 public record CadastroMedicoResponseDto(
     Long idMedico,

@@ -1,7 +1,7 @@
-package com.codexsystem.api.repository;
+package com.codexsystem.api.domain.repository;
 
-import com.codexsystem.api.enums.StatusMedico;
-import com.codexsystem.api.model.Medico;
+import com.codexsystem.api.domain.enums.StatusMedico;
+import com.codexsystem.api.domain.model.Medico;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

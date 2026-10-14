@@ -1,4 +1,4 @@
-package com.codexsystem.api.dto.request;
+package com.codexsystem.api.domain.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

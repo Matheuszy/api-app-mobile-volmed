@@ -1,4 +1,4 @@
-package com.codexsystem.api.model;
+package com.codexsystem.api.domain.model;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;

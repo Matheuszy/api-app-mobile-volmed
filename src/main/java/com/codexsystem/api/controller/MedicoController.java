@@ -1,9 +1,9 @@
 package com.codexsystem.api.controller;
 
-import com.codexsystem.api.dto.request.AtualizaMedicoDto;
-import com.codexsystem.api.dto.request.CadastroMedicoRequest;
-import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
-import com.codexsystem.api.service.MedicoService;
+import com.codexsystem.api.domain.dto.request.AtualizaMedicoDto;
+import com.codexsystem.api.domain.dto.request.CadastroMedicoRequest;
+import com.codexsystem.api.domain.dto.response.CadastroMedicoResponseDto;
+import com.codexsystem.api.domain.service.MedicoService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,8 +11,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/doctor")

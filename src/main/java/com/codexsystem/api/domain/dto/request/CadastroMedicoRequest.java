@@ -1,6 +1,6 @@
-package com.codexsystem.api.dto.request;
+package com.codexsystem.api.domain.dto.request;
 
-import com.codexsystem.api.enums.Especialidade;
+import com.codexsystem.api.domain.enums.Especialidade;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
