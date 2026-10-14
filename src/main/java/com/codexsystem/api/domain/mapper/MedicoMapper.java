@@ -25,7 +25,6 @@ public class MedicoMapper {
     }
 
 
-
     public CadastroMedicoResponseDto toDtoMedico(Medico medico) {
         CadastroMedicoResponseDto dto = new CadastroMedicoResponseDto(
                 medico.getId(),
@@ -58,6 +57,4 @@ public class MedicoMapper {
         );
         return endereco;
     }
-
-
 }
