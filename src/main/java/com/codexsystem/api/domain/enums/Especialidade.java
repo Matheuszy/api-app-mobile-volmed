@@ -1,4 +1,4 @@
-package com.codexsystem.api.enums;
+package com.codexsystem.api.domain.enums;
 
 public enum Especialidade {
     CARDIOLOGIA,

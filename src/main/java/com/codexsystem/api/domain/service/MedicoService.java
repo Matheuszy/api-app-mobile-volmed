@@ -1,12 +1,12 @@
-package com.codexsystem.api.service;
+package com.codexsystem.api.domain.service;
 
-import com.codexsystem.api.dto.request.AtualizaMedicoDto;
-import com.codexsystem.api.dto.request.CadastroMedicoRequest;
-import com.codexsystem.api.dto.response.CadastroMedicoResponseDto;
-import com.codexsystem.api.enums.StatusMedico;
-import com.codexsystem.api.mapper.MedicoMapper;
-import com.codexsystem.api.model.Medico;
-import com.codexsystem.api.repository.MedicoRepositorie;
+import com.codexsystem.api.domain.dto.request.AtualizaMedicoDto;
+import com.codexsystem.api.domain.dto.request.CadastroMedicoRequest;
+import com.codexsystem.api.domain.dto.response.CadastroMedicoResponseDto;
+import com.codexsystem.api.domain.enums.StatusMedico;
+import com.codexsystem.api.domain.mapper.MedicoMapper;
+import com.codexsystem.api.domain.model.Medico;
+import com.codexsystem.api.domain.repository.MedicoRepositorie;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
