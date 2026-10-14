@@ -1,6 +1,6 @@
 package com.codexsystem.api.domain.enums;
 
-public enum StatusMedico {
+public enum Status {
     ATIVO,
     INATIVO
 }
