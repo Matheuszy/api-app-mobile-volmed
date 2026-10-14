@@ -1,5 +1,6 @@
 package com.codexsystem.api.domain.model;
 
+import com.codexsystem.api.domain.enums.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,9 @@ public class Paciente {
     private String email;
 
     @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @Enumerated(EnumType.STRING)
     private Endereco endereco;
 
     public Paciente() {
@@ -36,6 +40,7 @@ public class Paciente {
         this.telefone = telefone;
         this.cpf = cpf;
         this.email = email;
+        this.status = Status.ATIVO;
         this.endereco = endereco;
     }
 
