@@ -43,5 +43,4 @@ public class Paciente {
         this.status = Status.ATIVO;
         this.endereco = endereco;
     }
-
 }
