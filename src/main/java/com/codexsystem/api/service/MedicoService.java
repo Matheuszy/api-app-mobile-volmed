@@ -28,8 +28,8 @@ public class MedicoService {
     @Transactional
     public CadastroMedicoResponseDto cadastrarMedico(CadastroMedicoRequest medico) {
         Medico newMedico = mapper.toEntityMedico(medico);
-        medicoRepository.save(newMedico);
-        return mapper.toDtoMedico(newMedico);
+        Medico medicoSalvo = medicoRepository.save(newMedico);
+        return mapper.toDtoMedico(medicoSalvo);
 
     }
 
