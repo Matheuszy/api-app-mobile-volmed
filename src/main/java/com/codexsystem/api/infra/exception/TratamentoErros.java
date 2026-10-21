@@ -1,4 +1,4 @@
-package com.codexsystem.api.infra;
+package com.codexsystem.api.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
