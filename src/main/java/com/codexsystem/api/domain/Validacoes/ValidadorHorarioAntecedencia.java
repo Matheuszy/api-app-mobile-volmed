@@ -2,12 +2,13 @@ package com.codexsystem.api.domain.Validacoes;
 
 import com.codexsystem.api.domain.dto.request.DadosAgendamentoConsulta;
 import com.codexsystem.api.infra.exception.ValidacaoException;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
-
-public class ValidadorHorarioAntecedencia {
+@Component
+public class ValidadorHorarioAntecedencia implements ValidadorAgendamentoConsultas {
     public void validar(DadosAgendamentoConsulta dados){
         var dataConsulta = dados.data();
         var agora = LocalDateTime.now();
