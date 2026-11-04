@@ -2,6 +2,7 @@ package com.codexsystem.api.domain.service;
 
 import com.codexsystem.api.domain.Validacoes.agendamento.ValidadorAgendamentoConsultas;
 import com.codexsystem.api.domain.Validacoes.cancelamento.ValidadorCancelamentoDeConsulta;
+import com.codexsystem.api.domain.enums.Status;
 import com.codexsystem.api.domain.dto.request.DadosAgendamentoConsulta;
 import com.codexsystem.api.domain.dto.request.DadosCancelamentoConsulta;
 import com.codexsystem.api.domain.dto.response.DadosDetalhamentoConsulta;
@@ -12,6 +13,7 @@ import com.codexsystem.api.domain.repository.MedicoRepositorie;
 import com.codexsystem.api.domain.repository.PacienteRepositorie;
 import com.codexsystem.api.infra.exception.ValidacaoException;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -72,7 +74,11 @@ public class ConsultaService {
         if (dados.especialidade() == null) {
             throw new ValidacaoException("Especialidade é obrigatória quando o médico não for escolhido");
         }
-        return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
+        return medicoRepository.escolherMedicoAleatorioLivreNaData(
+                        dados.especialidade(), dados.data(), Status.ATIVO, PageRequest.of(0, 1))
+                .stream()
+                .findFirst()
+                .orElse(null);
     }
 
     public void cancelar(DadosCancelamentoConsulta dados) {

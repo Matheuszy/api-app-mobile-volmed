@@ -11,11 +11,25 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.http.HttpMethod;
 
 import java.io.IOException;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return HttpMethod.OPTIONS.matches(request.getMethod())
+                || path.equals("/auth/login")
+                || path.equals("/cadastro/user")
+                || path.equals("/doctor/register/doctor")
+                || path.equals("/pacientes/cadastrar")
+                || path.equals("/swagger-ui.html")
+                || path.startsWith("/swagger-ui/")
+                || path.startsWith("/v3/api-docs/");
+    }
 
     @Autowired
     private TokenService tokenService;
