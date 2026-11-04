@@ -4,6 +4,7 @@ import com.codexsystem.api.domain.dto.request.AtualizaMedicoDto;
 import com.codexsystem.api.domain.dto.request.CadastroMedicoRequest;
 import com.codexsystem.api.domain.dto.response.CadastroMedicoResponseDto;
 import com.codexsystem.api.domain.service.MedicoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/doctor")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
 
     private final MedicoService medicoService;

@@ -4,12 +4,14 @@ import com.codexsystem.api.domain.dto.request.AtualizarPacienteDto;
 import com.codexsystem.api.domain.dto.request.CadastrarPacienteRequest;
 import com.codexsystem.api.domain.dto.response.CadastroPacienteResponse;
 import com.codexsystem.api.domain.service.PacienteService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/pacientes")
+@SecurityRequirement(name = "bearer-key")
 public class PacienteController {
 
     private final PacienteService pacienteService;

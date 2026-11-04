@@ -35,10 +35,9 @@ public class Medico {
 
     }
 
-    public Medico(String nome, String email, String telefone, Especialidade especialidade, String crm, Endereco endereco) {
+    public Medico(String nome, String email, Especialidade especialidade, String crm, Endereco endereco) {
         this.nome = nome;
         this.email = email;
-        this.telefone = telefone;
         this.status = Status.ATIVO;
         this.especialidade = especialidade;
         this.crm = crm;
