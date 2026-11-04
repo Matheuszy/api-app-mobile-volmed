@@ -3,8 +3,10 @@ package com.codexsystem.api.domain.Validacoes;
 import com.codexsystem.api.domain.dto.request.DadosAgendamentoConsulta;
 import com.codexsystem.api.domain.repository.ConsultaRepositorie;
 import com.codexsystem.api.infra.exception.ValidacaoException;
+import org.springframework.stereotype.Component;
 
-public class ValidadorPacienteSemOutraConsultaNoDia {
+@Component
+public class ValidadorPacienteSemOutraConsultaNoDia implements ValidadorAgendamentoConsultas {
 
     private final ConsultaRepositorie consultaRepositorie;
 

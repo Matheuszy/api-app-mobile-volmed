@@ -1,6 +1,7 @@
 package com.codexsystem.api.domain.service;
 
 import com.codexsystem.api.domain.dto.request.AtualizaMedicoDto;
+import com.codexsystem.api.domain.dto.request.AtualizarPacienteDto;
 import com.codexsystem.api.domain.dto.request.CadastrarPacienteRequest;
 import com.codexsystem.api.domain.dto.response.CadastroMedicoResponseDto;
 import com.codexsystem.api.domain.dto.response.CadastroPacienteResponse;
@@ -25,7 +26,7 @@ public class PacienteService {
     }
 
     @Transactional
-    public CadastroPacienteResponse toDtoMedico(CadastrarPacienteRequest paciente) {
+    public CadastroPacienteResponse criar(CadastrarPacienteRequest paciente) {
         if (repositorie.findByNome(paciente.nome()).isPresent()) {
             throw new RuntimeException("Paciente já cadastrado");
         }
@@ -51,18 +52,16 @@ public class PacienteService {
         repositorie.save(paciente);
     }
 
-    public CadastroPacienteResponse atualizarPaciente(AtualizaMedicoDto paciente) {
-        Paciente existingPaciente = repositorie.findById(paciente.idMedico())
+    public CadastroPacienteResponse atualizarPaciente(AtualizarPacienteDto paciente) {
+        Paciente existingPaciente = repositorie.findById(paciente.idPaciente())
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+
 
         if (paciente.nome() != null) {
             existingPaciente.setNome(paciente.nome());
         }
         if (paciente.telefone() != null) {
             existingPaciente.setTelefone(paciente.telefone());
-        }
-        if (paciente.endereco() != null) {
-            existingPaciente.setEndereco(paciente.endereco());
         }
 
         Paciente updatedPaciente = repositorie.save(existingPaciente);
