@@ -1,7 +1,9 @@
 package com.codexsystem.api.domain.service;
 
-import com.codexsystem.api.domain.Validacoes.ValidadorAgendamentoConsultas;
+import com.codexsystem.api.domain.Validacoes.agendamento.ValidadorAgendamentoConsultas;
+import com.codexsystem.api.domain.Validacoes.cancelamento.ValidadorCancelamentoDeConsulta;
 import com.codexsystem.api.domain.dto.request.DadosAgendamentoConsulta;
+import com.codexsystem.api.domain.dto.request.DadosCancelamentoConsulta;
 import com.codexsystem.api.domain.dto.response.DadosDetalhamentoConsulta;
 import com.codexsystem.api.domain.model.Consulta;
 import com.codexsystem.api.domain.model.Medico;
@@ -21,15 +23,18 @@ public class ConsultaService {
 
     private final List<ValidadorAgendamentoConsultas> validadores;
 
+    private final List<ValidadorCancelamentoDeConsulta> validadoresCancelamento;
     private final PacienteRepositorie pacienteRepository;
 
     public ConsultaService(ConsultaRepositorie consultaRepository,
                            MedicoRepositorie medicoRepository,
                            PacienteRepositorie pacienteRepository,
+                           List<ValidadorCancelamentoDeConsulta> validadoresCancelamento,
                            List<ValidadorAgendamentoConsultas> validadores) {
         this.consultaRepository = consultaRepository;
         this.medicoRepository = medicoRepository;
         this.pacienteRepository = pacienteRepository;
+        this.validadoresCancelamento = validadoresCancelamento;
         this.validadores = validadores;
     }
 
@@ -52,7 +57,6 @@ public class ConsultaService {
         }
 
         var consulta = new Consulta(
-                null,
                 medico,
                 paciente,
                 dados.data()
@@ -69,5 +73,16 @@ public class ConsultaService {
             throw new ValidacaoException("Especialidade é obrigatória quando o médico não for escolhido");
         }
         return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
+    }
+
+    public void cancelar(DadosCancelamentoConsulta dados) {
+        if (!consultaRepository.existsById(dados.idConsulta())) {
+            throw new ValidacaoException("Id da consulta informado não existe!");
+        }
+
+        validadoresCancelamento.forEach(v -> v.validar(dados));
+
+        var consulta = consultaRepository.getReferenceById(dados.idConsulta());
+        consulta.cancelar(dados.motivo());
     }
 }
