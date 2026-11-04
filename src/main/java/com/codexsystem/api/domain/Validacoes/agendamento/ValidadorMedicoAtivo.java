@@ -1,4 +1,4 @@
-package com.codexsystem.api.domain.Validacoes;
+package com.codexsystem.api.domain.Validacoes.agendamento;
 
 import com.codexsystem.api.domain.dto.request.DadosAgendamentoConsulta;
 import com.codexsystem.api.domain.repository.MedicoRepositorie;
