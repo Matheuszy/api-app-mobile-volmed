@@ -23,6 +23,7 @@ public class Medico {
 
     private String crm;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Enumerated(EnumType.STRING)
