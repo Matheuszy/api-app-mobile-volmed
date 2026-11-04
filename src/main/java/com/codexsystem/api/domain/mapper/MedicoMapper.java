@@ -16,7 +16,6 @@ public class MedicoMapper {
         Medico medico = new Medico(
                 dto.nome(),
                 dto.email(),
-                dto.telefone(),
                 dto.especialidade(),
                 dto.crm(),
                 endereco

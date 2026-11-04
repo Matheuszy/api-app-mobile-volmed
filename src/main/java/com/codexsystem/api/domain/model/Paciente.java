@@ -28,7 +28,7 @@ public class Paciente {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Enumerated(EnumType.STRING)
+    @Embedded
     private Endereco endereco;
 
     public Paciente() {
